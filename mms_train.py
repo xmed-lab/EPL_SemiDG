@@ -269,10 +269,8 @@ def train_one_epoch(model_l, model_r, niters_per_epoch, label_dataloader, unlabe
             var_r, exp_var_r = cal_variance(logits_cons_stu_2, aug_logits_cons_stu_2)
 
             # cps loss
-            # cps_loss = torch.mean(exp_var_r * cross_criterion(logits_cons_stu_1, ps_label_2)) + torch.mean(
-            #                exp_var_l * cross_criterion(logits_cons_stu_2, ps_label_1)) + torch.mean(var_l) + torch.mean(var_r)
-
-            cps_loss = cross_criterion(logits_cons_stu_1, ps_label_2) + cross_criterion(logits_cons_stu_2, ps_label_1)
+            cps_loss = torch.mean(exp_var_r * cross_criterion(logits_cons_stu_1, ps_label_2)) + torch.mean(
+                           exp_var_l * cross_criterion(logits_cons_stu_2, ps_label_1)) + torch.mean(var_l) + torch.mean(var_r)
 
             # cps weight
             cps_loss = cps_loss * config['CPS_weight']

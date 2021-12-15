@@ -28,13 +28,17 @@ We followed the preprocessing of [Semi-supervised Meta-learning with Disentangle
 ### Environments
 We use [wandb](https://wandb.ai/site) to visulize our results.
 
-
 ## How to Run
+### Pretrain backbone
+We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://gohkust-my.sharepoint.com/:f:/g/personal/eehfyao_ust_hk/Ev1oSK0aoDROv9PkfQ7JY0YBGE-QhOslaKCLL6GT_u417A?e=cLU6gr).
+
 ### Training
 
 
 ## Main Results
+![result](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20211214221722454.png)
 
 ## Citation
+
 
 ## License

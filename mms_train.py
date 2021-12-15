@@ -18,7 +18,7 @@ from utils.utils import get_device, check_accuracy, check_accuracy_dual, label_t
 from mms_dataloader import get_meta_split_data_loaders
 from config import default_config
 from utils.dice_loss import dice_coeff
-from losses import SupConLoss
+# from losses import SupConLoss
 import utils.mask_gen as mask_gen
 from utils.custom_collate import SegCollate
 

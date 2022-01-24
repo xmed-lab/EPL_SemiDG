@@ -157,7 +157,7 @@ def cal_variance(pred, aug_pred):
 
     return variance, exp_variance
 
-def train_one_epoch(model_l, model_r, niters_per_epoch, label_dataloader, unlabel_dataloader_0, unlabel_dataloader_1, optimizer_r, optimizer_l, cross_criterion, scaler, epoch):
+def train_one_epoch(model_l, model_r, niters_per_epoch, label_dataloader, unlabel_dataloader_0, unlabel_dataloader_1, optimizer_r, optimizer_l, cross_criterion, epoch):
     # loss data
     total_loss = []
     total_loss_l = []
@@ -173,116 +173,115 @@ def train_one_epoch(model_l, model_r, niters_per_epoch, label_dataloader, unlabe
     log_sm = torch.nn.LogSoftmax(dim=1)
 
     for idx in pbar:
-        with torch.cuda.amp.autocast():
-            minibatch = label_dataloader.next()
-            unsup_minibatch_0 = unlabel_dataloader_0.next()
-            unsup_minibatch_1 = unlabel_dataloader_1.next()
+        minibatch = label_dataloader.next()
+        unsup_minibatch_0 = unlabel_dataloader_0.next()
+        unsup_minibatch_1 = unlabel_dataloader_1.next()
 
-            imgs = minibatch['img']
-            aug_imgs = minibatch['aug_img']
-            mask = minibatch['mask']
+        imgs = minibatch['img']
+        aug_imgs = minibatch['aug_img']
+        mask = minibatch['mask']
 
-            unsup_imgs_0 = unsup_minibatch_0['img']
-            unsup_imgs_1 = unsup_minibatch_1['img']
+        unsup_imgs_0 = unsup_minibatch_0['img']
+        unsup_imgs_1 = unsup_minibatch_1['img']
 
-            aug_unsup_imgs_0 = unsup_minibatch_0['aug_img']
-            aug_unsup_imgs_1 = unsup_minibatch_1['aug_img']
-            mask_params = unsup_minibatch_0['mask_params']
+        aug_unsup_imgs_0 = unsup_minibatch_0['aug_img']
+        aug_unsup_imgs_1 = unsup_minibatch_1['aug_img']
+        mask_params = unsup_minibatch_0['mask_params']
 
-            imgs = imgs.to(device)
-            aug_imgs = aug_imgs.to(device)
-            mask_type = torch.long
-            mask = mask.to(device=device, dtype=mask_type)
+        imgs = imgs.to(device)
+        aug_imgs = aug_imgs.to(device)
+        mask_type = torch.long
+        mask = mask.to(device=device, dtype=mask_type)
 
-            unsup_imgs_0 = unsup_imgs_0.to(device)
-            unsup_imgs_1 = unsup_imgs_1.to(device)
-            aug_unsup_imgs_0 = aug_unsup_imgs_0.to(device)
-            aug_unsup_imgs_1 = aug_unsup_imgs_1.to(device)
-            mask_params = mask_params.to(device)
+        unsup_imgs_0 = unsup_imgs_0.to(device)
+        unsup_imgs_1 = unsup_imgs_1.to(device)
+        aug_unsup_imgs_0 = aug_unsup_imgs_0.to(device)
+        aug_unsup_imgs_1 = aug_unsup_imgs_1.to(device)
+        mask_params = mask_params.to(device)
 
-            batch_mix_masks = mask_params
-            # unlabeled mixed images
-            unsup_imgs_mixed = unsup_imgs_0 * \
-                (1 - batch_mix_masks) + unsup_imgs_1 * batch_mix_masks
-            # unlabeled r mixed images
-            aug_unsup_imgs_mixed = aug_unsup_imgs_0 * \
-                (1 - batch_mix_masks) + aug_unsup_imgs_1 * batch_mix_masks
+        batch_mix_masks = mask_params
+        # unlabeled mixed images
+        unsup_imgs_mixed = unsup_imgs_0 * \
+            (1 - batch_mix_masks) + unsup_imgs_1 * batch_mix_masks
+        # unlabeled r mixed images
+        aug_unsup_imgs_mixed = aug_unsup_imgs_0 * \
+            (1 - batch_mix_masks) + aug_unsup_imgs_1 * batch_mix_masks
 
-            # add uncertainty
-            with torch.no_grad():
-                # Estimate the pseudo-label with model_l using original data
-                logits_u0_tea_1, _ = model_l(unsup_imgs_0)
-                logits_u1_tea_1, _ = model_l(unsup_imgs_1)
-                logits_u0_tea_1 = logits_u0_tea_1.detach()
-                logits_u1_tea_1 = logits_u1_tea_1.detach()
-                aug_logits_u0_tea_1, _ = model_l(aug_unsup_imgs_0)
-                aug_logits_u1_tea_1, _ = model_l(aug_unsup_imgs_1)
-                aug_logits_u0_tea_1 = aug_logits_u0_tea_1.detach()
-                aug_logits_u1_tea_1 = aug_logits_u1_tea_1.detach()
-                # Estimate the pseudo-label with model_r using augmentated data
-                logits_u0_tea_2, _ = model_r(unsup_imgs_0)
-                logits_u1_tea_2, _ = model_r(unsup_imgs_1)
-                logits_u0_tea_2 = logits_u0_tea_2.detach()
-                logits_u1_tea_2 = logits_u1_tea_2.detach()
-                aug_logits_u0_tea_2, _ = model_r(aug_unsup_imgs_0)
-                aug_logits_u1_tea_2, _ = model_r(aug_unsup_imgs_1)
-                aug_logits_u0_tea_2 = aug_logits_u0_tea_2.detach()
-                aug_logits_u1_tea_2 = aug_logits_u1_tea_2.detach()
+        # add uncertainty
+        with torch.no_grad():
+            # Estimate the pseudo-label with model_l using original data
+            logits_u0_tea_1, _ = model_l(unsup_imgs_0)
+            logits_u1_tea_1, _ = model_l(unsup_imgs_1)
+            logits_u0_tea_1 = logits_u0_tea_1.detach()
+            logits_u1_tea_1 = logits_u1_tea_1.detach()
+            aug_logits_u0_tea_1, _ = model_l(aug_unsup_imgs_0)
+            aug_logits_u1_tea_1, _ = model_l(aug_unsup_imgs_1)
+            aug_logits_u0_tea_1 = aug_logits_u0_tea_1.detach()
+            aug_logits_u1_tea_1 = aug_logits_u1_tea_1.detach()
+            # Estimate the pseudo-label with model_r using augmentated data
+            logits_u0_tea_2, _ = model_r(unsup_imgs_0)
+            logits_u1_tea_2, _ = model_r(unsup_imgs_1)
+            logits_u0_tea_2 = logits_u0_tea_2.detach()
+            logits_u1_tea_2 = logits_u1_tea_2.detach()
+            aug_logits_u0_tea_2, _ = model_r(aug_unsup_imgs_0)
+            aug_logits_u1_tea_2, _ = model_r(aug_unsup_imgs_1)
+            aug_logits_u0_tea_2 = aug_logits_u0_tea_2.detach()
+            aug_logits_u1_tea_2 = aug_logits_u1_tea_2.detach()
 
-            logits_u0_tea_1 = (logits_u0_tea_1 + aug_logits_u0_tea_1) / 2
-            logits_u1_tea_1 = (logits_u1_tea_1 + aug_logits_u1_tea_1) / 2
-            logits_u0_tea_2 = (logits_u0_tea_2 + aug_logits_u0_tea_2) / 2
-            logits_u1_tea_2 = (logits_u1_tea_2 + aug_logits_u1_tea_2) / 2
+        logits_u0_tea_1 = (logits_u0_tea_1 + aug_logits_u0_tea_1) / 2
+        logits_u1_tea_1 = (logits_u1_tea_1 + aug_logits_u1_tea_1) / 2
+        logits_u0_tea_2 = (logits_u0_tea_2 + aug_logits_u0_tea_2) / 2
+        logits_u1_tea_2 = (logits_u1_tea_2 + aug_logits_u1_tea_2) / 2
 
-            # Mix teacher predictions using same mask
-            # It makes no difference whether we do this with logits or probabilities as
-            # the mask pixels are either 1 or 0
-            logits_cons_tea_1 = logits_u0_tea_1 * \
-                (1 - batch_mix_masks) + logits_u1_tea_1 * batch_mix_masks
-            _, ps_label_1 = torch.max(logits_cons_tea_1, dim=1)
-            ps_label_1 = ps_label_1.long()
+        # Mix teacher predictions using same mask
+        # It makes no difference whether we do this with logits or probabilities as
+        # the mask pixels are either 1 or 0
+        logits_cons_tea_1 = logits_u0_tea_1 * \
+            (1 - batch_mix_masks) + logits_u1_tea_1 * batch_mix_masks
+        _, ps_label_1 = torch.max(logits_cons_tea_1, dim=1)
+        ps_label_1 = ps_label_1.long()
 
-            logits_cons_tea_2 = logits_u0_tea_2 * \
-                (1 - batch_mix_masks) + logits_u1_tea_2 * batch_mix_masks
-            _, ps_label_2 = torch.max(logits_cons_tea_2, dim=1)
-            ps_label_2 = ps_label_2.long()
+        logits_cons_tea_2 = logits_u0_tea_2 * \
+            (1 - batch_mix_masks) + logits_u1_tea_2 * batch_mix_masks
+        _, ps_label_2 = torch.max(logits_cons_tea_2, dim=1)
+        ps_label_2 = ps_label_2.long()
 
-            # Get student_l prediction for mixed image
-            logits_cons_stu_1, _ = model_l(unsup_imgs_mixed)
-            aug_logits_cons_stu_1,_ = model_l(aug_unsup_imgs_mixed)
-            # Get student_r prediction for mixed image
-            logits_cons_stu_2, _ = model_r(unsup_imgs_mixed)
-            aug_logits_cons_stu_2, _ = model_r(aug_unsup_imgs_mixed)
+        # Get student_l prediction for mixed image
+        logits_cons_stu_1, _ = model_l(unsup_imgs_mixed)
+        aug_logits_cons_stu_1,_ = model_l(aug_unsup_imgs_mixed)
+        # Get student_r prediction for mixed image
+        logits_cons_stu_2, _ = model_r(unsup_imgs_mixed)
+        aug_logits_cons_stu_2, _ = model_r(aug_unsup_imgs_mixed)
 
-            # add uncertainty
-            var_l, exp_var_l = cal_variance(logits_cons_stu_1, aug_logits_cons_stu_1)
-            var_r, exp_var_r = cal_variance(logits_cons_stu_2, aug_logits_cons_stu_2)
+        # add uncertainty
+        var_l, exp_var_l = cal_variance(logits_cons_stu_1, aug_logits_cons_stu_1)
+        var_r, exp_var_r = cal_variance(logits_cons_stu_2, aug_logits_cons_stu_2)
 
-            # cps loss
-            cps_loss = torch.mean(exp_var_r * cross_criterion(logits_cons_stu_1, ps_label_2)) + torch.mean(
-                           exp_var_l * cross_criterion(logits_cons_stu_2, ps_label_1)) + torch.mean(var_l) + torch.mean(var_r)
+        # cps loss
+        cps_loss = torch.mean(exp_var_r * cross_criterion(logits_cons_stu_1, ps_label_2)) + torch.mean(
+                        exp_var_l * cross_criterion(logits_cons_stu_2, ps_label_1)) + torch.mean(var_l) + torch.mean(var_r)
 
-            # cps weight
-            cps_loss = cps_loss * config['CPS_weight']
+        # cps weight
+        cps_loss = cps_loss * config['CPS_weight']
 
-            # supervised loss on both models
-            pre_sup_l, feature_l = model_l(imgs)
-            pre_sup_r, feature_r = model_r(imgs)
-            # dice loss
-            sof_l = F.softmax(pre_sup_l, dim=1)
-            sof_r = F.softmax(pre_sup_r, dim=1)
+        # supervised loss on both models
+        pre_sup_l, feature_l = model_l(imgs)
+        pre_sup_r, feature_r = model_r(imgs)
+        # dice loss
+        sof_l = F.softmax(pre_sup_l, dim=1)
+        sof_r = F.softmax(pre_sup_r, dim=1)
 
-            loss_r = dice_loss(sof_r[:, 0, :, :], mask[:, 0, :, :])
-            loss_l = dice_loss(sof_l[:, 0, :, :], mask[:, 0, :, :])
+        loss_r = dice_loss(sof_r[:, 0, :, :], mask[:, 0, :, :])
+        loss_l = dice_loss(sof_l[:, 0, :, :], mask[:, 0, :, :])
 
-            # contrastive loss SupConLoss
-            # features means different views
-            # feature_l = feature_l.unsqueeze(1)
-            # feature_r = feature_r.unsqueeze(1)
-            # features = torch.cat((feature_l, feature_r),dim=1)
+        # contrastive loss SupConLoss
+        # features means different views
+        # feature_l = feature_l.unsqueeze(1)
+        # feature_r = feature_r.unsqueeze(1)
+        # features = torch.cat((feature_l, feature_r),dim=1)
 
-            # supconloss = SupConLoss()
-            # con_loss = supconloss(features)
+        # supconloss = SupConLoss()
+        # con_loss = supconloss(features)
         con_loss = 1
         optimizer_l.zero_grad()
         optimizer_r.zero_grad()
@@ -293,11 +292,9 @@ def train_one_epoch(model_l, model_r, niters_per_epoch, label_dataloader, unlabe
             loss = loss_l + loss_r + cps_loss
         # loss = loss_l + loss_r + cps_loss
 
-        # Scales loss, step and update
-        scaler.scale(loss).backward()
-        scaler.step(optimizer_l)
-        scaler.step(optimizer_r)
-        scaler.update()
+        loss.backward()
+        optimizer_l.step()
+        optimizer_r.step()
 
         total_loss.append(loss.item())
         total_loss_l.append(loss_l.item())
@@ -368,9 +365,6 @@ def train(label_loader, unlabel_loader_0, unlabel_loader_1, test_loader, val_loa
     optimizer_l, optimizer_r = ini_optimizer(
         model_l, model_r, learning_rate, weight_decay)
 
-    # Creates a GradScaler once at the beginning of training.
-    scaler = torch.cuda.amp.GradScaler()
-
     best_dice = 0
 
     for epoch in range(num_epoch):
@@ -384,7 +378,7 @@ def train(label_loader, unlabel_loader_0, unlabel_loader_1, test_loader, val_loa
 
         # normal images
         model_l, model_r, total_loss, total_loss_l, total_loss_r, total_cps_loss, total_con_loss = train_one_epoch(
-            model_l, model_r, niters_per_epoch, label_dataloader, unlabel_dataloader_0, unlabel_dataloader_1, optimizer_r, optimizer_l, cross_criterion, scaler, epoch)
+            model_l, model_r, niters_per_epoch, label_dataloader, unlabel_dataloader_0, unlabel_dataloader_1, optimizer_r, optimizer_l, cross_criterion, epoch)
 
         # Print the information.
         print(

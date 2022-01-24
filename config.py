@@ -13,10 +13,10 @@ default_config = dict(
     test_vendor = 'D',
     ratio = 0.02,                   # 2%
     CPS_weight = 1.5,
-    gpus= [5, 6],
+    gpus= [2, 3],
     ifFast = False,
     Pretrain = True,
-    pretrain_file = '/home/listu/code/semi_medical/MNMS_seg/pretrain_res/resnet50_v1c.pth',
+    pretrain_file = '/home/eehfyao/code/semi_medical/MNMS_seg/pretrain_res/resnet50_v1c.pth',
 
     restore = False,
     restore_from = name+'.pt',

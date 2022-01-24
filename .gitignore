@@ -2,3 +2,4 @@
 network/__pycache__/
 utils/__pycache__/
 wandb/
+tmodel/

@@ -24,22 +24,22 @@ from utils.utils import im_convert
 from utils.data_utils import colorful_spectrum_mix, fourier_transform, save_image
 from config import default_config
 
-LabeledVendorA_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Labeled/vendorA/'
-LabeledVendorA_mask_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/mask/Labeled/vendorA/'
+LabeledVendorA_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Labeled/vendorA/'
+LabeledVendorA_mask_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/mask/Labeled/vendorA/'
 
-LabeledVendorB_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Labeled/vendorB/'
-LabeledVendorB_mask_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/mask/Labeled/vendorB/'
+LabeledVendorB_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Labeled/vendorB/'
+LabeledVendorB_mask_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/mask/Labeled/vendorB/'
 
-LabeledVendorC_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Labeled/vendorC/'
-LabeledVendorC_mask_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/mask/Labeled/vendorC/'
+LabeledVendorC_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Labeled/vendorC/'
+LabeledVendorC_mask_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/mask/Labeled/vendorC/'
 
-LabeledVendorD_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Labeled/vendorD/'
-LabeledVendorD_mask_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/mask/Labeled/vendorD/'
+LabeledVendorD_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Labeled/vendorD/'
+LabeledVendorD_mask_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/mask/Labeled/vendorD/'
 
-UnlabeledVendorA_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Unlabeled/vendorA/'
-UnlabeledVendorB_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Unlabeled/vendorB/'
-UnlabeledVendorC_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Unlabeled/vendorC/'
-UnlabeledVendorD_data_dir = '/home/eehfyao/code/semi_medical/scgm_split_2D/data/Unlabeled/vendorD/'
+UnlabeledVendorA_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Unlabeled/vendorA/'
+UnlabeledVendorB_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Unlabeled/vendorB/'
+UnlabeledVendorC_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Unlabeled/vendorC/'
+UnlabeledVendorD_data_dir = '/home/hyaoad/remote/semi_medical/scgm_split_2D/data/Unlabeled/vendorD/'
 
 Labeled_data_dir = [LabeledVendorA_data_dir, LabeledVendorB_data_dir, LabeledVendorC_data_dir, LabeledVendorD_data_dir]
 Labeled_mask_dir = [LabeledVendorA_mask_dir, LabeledVendorB_mask_dir, LabeledVendorC_mask_dir, LabeledVendorD_mask_dir]

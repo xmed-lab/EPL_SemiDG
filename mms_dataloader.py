@@ -25,28 +25,28 @@ from config import default_config
 # torch.cuda.set_device(6)
 
 # Data directories
-LabeledVendorA_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorA/'
-LabeledVendorA_mask_dir = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorA/'
-ReA_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorA/'
+LabeledVendorA_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Labeled/vendorA/'
+LabeledVendorA_mask_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/mask/Labeled/vendorA/'
+ReA_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Labeled/vendorA/'
 
-LabeledVendorB2_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorB/center2/'
-LabeledVendorB2_mask_dir = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorB/center2/'
-ReB2_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorB/center2/'
+LabeledVendorB2_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Labeled/vendorB/center2/'
+LabeledVendorB2_mask_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/mask/Labeled/vendorB/center2/'
+ReB2_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Labeled/vendorB/center2/'
 
-LabeledVendorB3_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorB/center3/'
-LabeledVendorB3_mask_dir = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorB/center3/'
-ReB3_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorB/center3/'
+LabeledVendorB3_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Labeled/vendorB/center3/'
+LabeledVendorB3_mask_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/mask/Labeled/vendorB/center3/'
+ReB3_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Labeled/vendorB/center3/'
 
-LabeledVendorC_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorC/'
-LabeledVendorC_mask_dir = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorC/'
-ReC_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorC/'
+LabeledVendorC_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Labeled/vendorC/'
+LabeledVendorC_mask_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/mask/Labeled/vendorC/'
+ReC_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Labeled/vendorC/'
 
-LabeledVendorD_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorD/'
-LabeledVendorD_mask_dir = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorD/'
-ReD_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorD/'
+LabeledVendorD_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Labeled/vendorD/'
+LabeledVendorD_mask_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/mask/Labeled/vendorD/'
+ReD_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Labeled/vendorD/'
 
-UnlabeledVendorC_data_dir = '/home/listu/code/semi_medical/mnms_split_2D/data/Unlabeled/vendorC/'
-UnReC_dir = '/home/listu/code/semi_medical/mnms_split_2D_re/Unlabeled/vendorC/'
+UnlabeledVendorC_data_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D/data/Unlabeled/vendorC/'
+UnReC_dir = '/home/hyaoad/remote/semi_medical/mnms_split_2D_re/Unlabeled/vendorC/'
 
 Re_dir = [ReA_dir, ReB2_dir, ReB3_dir, ReC_dir, ReD_dir]
 Labeled_data_dir = [LabeledVendorA_data_dir, LabeledVendorB2_data_dir, LabeledVendorB3_data_dir, LabeledVendorC_data_dir, LabeledVendorD_data_dir]

@@ -1,8 +1,8 @@
 
-name = 'new_SCGM_deeplab_20%_D_CM'
+name = 'MMS_deeplab_2%_D_CM'
 # hyperparameter
 default_config = dict(
-    batch_size=8,
+    batch_size=32,
     num_epoch=50,
     learning_rate=1e-4,            # learning rate of Adam
     weight_decay=0.01,             # weight decay 
@@ -12,8 +12,8 @@ default_config = dict(
     model_path = name+'.pt',
     test_vendor = 'D',
     ratio = 0.02,                   # 2%
-    CPS_weight = 1.5,
-    gpus= [2, 3],
+    CPS_weight = 3,
+    gpus= [0, 1, 2, 3],
     ifFast = False,
     Pretrain = True,
     pretrain_file = '/home/hyaoad/remote/semi_medical/MNMS_seg/pretrain_res/resnet50_v1c.pth',

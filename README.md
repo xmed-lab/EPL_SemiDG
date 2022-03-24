@@ -13,7 +13,7 @@ Architecture:
 
 ## Preparation
 ```
-conda env create -f semidg.yml
+conda env create -f semi_dg.yaml
 ```
 ### Dependencies
 

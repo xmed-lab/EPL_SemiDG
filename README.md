@@ -13,7 +13,7 @@ Architecture:
 
 ## Preparation
 ```
-conda env create -f environment.yml
+conda env create -f semidg.yml
 ```
 ### Dependencies
 
@@ -26,14 +26,17 @@ conda env create -f environment.yml
 We followed the preprocessing of [Semi-supervised Meta-learning with Disentanglement for Domain-generalised Medical Image Segmentation](https://arxiv.org/abs/2106.13292), you can find the preprocessing code [here](https://github.com/xxxliu95/DGNet).
 
 ### Environments
-We use [wandb](https://wandb.ai/site) to visulize our results.
+We use [wandb](https://wandb.ai/site) to visulize our results. If you want to use this, you may need get register an account first.
 
 ## How to Run
 ### Pretrain backbone
 We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://gohkust-my.sharepoint.com/:f:/g/personal/eehfyao_ust_hk/Ev1oSK0aoDROv9PkfQ7JY0YBGE-QhOslaKCLL6GT_u417A?e=cLU6gr).
 
 ### Training
-
+If you want to train the model on M&Ms dataset, you can use this command. You can find the config information in config.py.
+```
+python mms_train.py
+```
 
 ## Main Results
 ![result](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20211214221722454.png)

@@ -12,10 +12,6 @@ Architecture:
 - scgm_train.py(train file for SCGM dataset)
 
 ## Preparation
-```
-conda env create -f semi_dg.yaml
-```
-
 ### Datasets
 
 * We followed the setting of [Semi-supervised Meta-learning with Disentanglement for Domain-generalised Medical Image Segmentation](https://arxiv.org/abs/2106.13292).
@@ -25,7 +21,12 @@ conda env create -f semi_dg.yaml
 We followed the preprocessing of [Semi-supervised Meta-learning with Disentanglement for Domain-generalised Medical Image Segmentation](https://arxiv.org/abs/2106.13292), you can find the preprocessing code [here](https://github.com/xxxliu95/DGNet).
 
 ### Environments
-We use [wandb](https://wandb.ai/site) to visulize our results. If you want to use this, you may need get register an account first.
+We use [wandb](https://wandb.ai/site) to visulize our results. If you want to use this, you may need register an account first.
+
+Use this command to install the environments.
+```
+conda env create -f semi_dg.yaml
+```
 
 ## How to Run
 ### Pretrain backbone

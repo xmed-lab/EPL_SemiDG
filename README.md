@@ -15,7 +15,6 @@ Architecture:
 ```
 conda env create -f semi_dg.yaml
 ```
-### Dependencies
 
 ### Datasets
 
@@ -42,6 +41,12 @@ python mms_train.py
 ![result](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20211214221722454.png)
 
 ## Citation
-
-
-## License
+If this code is useful for your research, please consider citing:
+```
+@article{yao2022enhancing,
+  title={Enhancing Pseudo Label Quality for Semi-SupervisedDomain-Generalized Medical Image Segmentation},
+  author={Yao, Huifeng and Hu, Xiaowei and Li, Xiaomeng},
+  journal={arXiv preprint arXiv:2201.08657},
+  year={2022}
+}
+```

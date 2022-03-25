@@ -29,7 +29,7 @@ We use [wandb](https://wandb.ai/site) to visulize our results. If you want to us
 
 ## How to Run
 ### Pretrain backbone
-We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://gohkust-my.sharepoint.com/:f:/g/personal/eehfyao_ust_hk/Ev1oSK0aoDROv9PkfQ7JY0YBGE-QhOslaKCLL6GT_u417A?e=cLU6gr).
+We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/hyaoad_connect_ust_hk/EpAdzDSKuCpIoka2Jvz38Z0BYJ-3H3TonkcJsgTW6y8vGA?e=Rny6JB).
 
 ### Training
 If you want to train the model on M&Ms dataset, you can use this command. You can find the config information in config.py.

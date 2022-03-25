@@ -31,6 +31,9 @@ We use [wandb](https://wandb.ai/site) to visulize our results. If you want to us
 ### Pretrain backbone
 We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/hyaoad_connect_ust_hk/EpAdzDSKuCpIoka2Jvz38Z0BYJ-3H3TonkcJsgTW6y8vGA?e=Rny6JB).
 
+### Released model weights 
+You can find the trained model weights [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/hyaoad_connect_ust_hk/Eobfj61LItNDg6XDqp_iI84BNc3W_yLAyBYuiJDYSm2D1w?e=m5VFvg)
+
 ### Training
 If you want to train the model on M&Ms dataset, you can use this command. You can find the config information in config.py.
 ```

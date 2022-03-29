@@ -1,9 +1,11 @@
 # Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation(AAAI 2022)
 This is a PyTorch implementation of [Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation](https://arxiv.org/abs/2201.08657).
 
-Huifeng Yao, Xiaowei Hu, Xiaomeng Li
+The overall framework 
 
-Architecture:
+![framework](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20220329190457014.png)
+
+Architecture of the code:
 - config.py(config file)
 - inference_mms.py(inference file for M&Ms dataset)
 - inference_scgm.py(inference file for SCGM dataset)

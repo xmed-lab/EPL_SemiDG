@@ -41,6 +41,12 @@ If you want to train the model on M&Ms dataset, you can use this command. You ca
 python mms_train.py
 ```
 
+### Evaluate
+If you want to evaluate our models on M&Ms dataset, you can use this command.
+```
+python inference_mms.py
+```
+
 ## Main Results
 ![result](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20211214221722454.png)
 

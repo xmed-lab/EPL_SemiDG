@@ -266,8 +266,8 @@ def main():
     num_workers = 4
     test_vendor = 'D'
 
-    model_path_l = './tmodel/l_new_SCGM_deeplab_20%_'+str(test_vendor)+'_CM.pt'
-    model_path_r = './tmodel/r_new_SCGM_deeplab_20%_'+str(test_vendor)+'_CM.pt'
+    model_path_l = './tmodel/l_2%_'+str(test_vendor)+'.pt'
+    model_path_r = './tmodel/r_2%_'+str(test_vendor)+'.pt'
 
     label_loader, unlabel_loader, test_loader, val_loader, num_label_imgs, num_unsup_imgs = pre_data(
         batch_size=batch_size, num_workers=num_workers, test_vendor=test_vendor)

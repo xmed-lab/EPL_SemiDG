@@ -281,9 +281,9 @@ def main():
     # one_image_data = OneImageFolder(img_path, mask_path, re_path, fourier_path)
     # one_image_loader = DataLoader(dataset=one_image_data, batch_size=1, shuffle=False, drop_last=True, pin_memory=True)
 
-    draw_img(model_path_l, model_path_r, test_loader, test_vendor)
+    # draw_img(model_path_l, model_path_r, test_loader, test_vendor)
     # draw_many_img(model_path_l, model_path_r, test_loader)
-    # inference_dual(model_path_l, model_path_r, test_loader)
+    inference_dual(model_path_l, model_path_r, test_loader)
 
 if __name__ == '__main__':
     main()

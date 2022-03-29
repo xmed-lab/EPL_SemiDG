@@ -48,7 +48,7 @@ python mms_train.py
 ```
 
 ### Evaluate
-If you want to evaluate our models on M&Ms dataset, you can use this command. And you should change the model name(line 269 and 270) and the test_vendor(line 267) to load different models.
+If you want to evaluate our models on M&Ms dataset, you can use this command. And you should change the model name(line 320 and 321) and the test_vendor(line 318) to load different models.
 ```
 python inference_mms.py
 ```

@@ -313,27 +313,27 @@ def inference_dual(model_path_l, model_path_r, test_loader):
     print(record_flag)
 
 def main():
-    batch_size = 32
-    num_workers = 8
+    batch_size = 1
+    num_workers = 4
     test_vendor = 'A'
 
-    model_path_l = './tmodel/l_base_deeplab_2%_'+str(test_vendor)+'_CM.pt'
-    model_path_r = './tmodel/r_base_deeplab_2%_'+str(test_vendor)+'_CM.pt'
+    model_path_l = './tmodel/l_deeplab_2%_'+str(test_vendor)+'.pt'
+    model_path_r = './tmodel/r_deeplab_2%_'+str(test_vendor)+'.pt'
 
-    # label_loader, unlabel_loader, test_loader, val_loader, num_label_imgs, num_unsup_imgs = pre_data(
-    #     batch_size=batch_size, num_workers=num_workers, test_vendor=test_vendor)
-    id = '047258'
-    # id = '002126'
-    img_path = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorC/'+ id +'.npz'
-    mask_path = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorC/'+ id +'.png'
-    re_path = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorC/'+ id +'.npz'
-    fourier_path = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorB/center2/000005.npz'
-    one_image_data = OneImageFolder(img_path, mask_path, re_path, fourier_path)
-    one_image_loader = DataLoader(dataset=one_image_data, batch_size=1, shuffle=False, drop_last=True, pin_memory=True)
+    label_loader, unlabel_loader, test_loader, val_loader, num_label_imgs, num_unsup_imgs = pre_data(
+        batch_size=batch_size, num_workers=num_workers, test_vendor=test_vendor)
+    # id = '047258'
+    # # id = '002126'
+    # img_path = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorC/'+ id +'.npz'
+    # mask_path = '/home/listu/code/semi_medical/mnms_split_2D/mask/Labeled/vendorC/'+ id +'.png'
+    # re_path = '/home/listu/code/semi_medical/mnms_split_2D_re/Labeled/vendorC/'+ id +'.npz'
+    # fourier_path = '/home/listu/code/semi_medical/mnms_split_2D/data/Labeled/vendorB/center2/000005.npz'
+    # one_image_data = OneImageFolder(img_path, mask_path, re_path, fourier_path)
+    # one_image_loader = DataLoader(dataset=one_image_data, batch_size=1, shuffle=False, drop_last=True, pin_memory=True)
 
-    draw_img(model_path_l, model_path_r, one_image_loader, test_vendor)
+    # draw_img(model_path_l, model_path_r, one_image_loader, test_vendor)
     # draw_many_img(model_path_l, model_path_r, test_loader)
-    # inference_dual(model_path_l, model_path_r, test_loader)
+    inference_dual(model_path_l, model_path_r, test_loader)
 
 if __name__ == '__main__':
     main()

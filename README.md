@@ -1,4 +1,4 @@
-# Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation(AAAI 2022)
+# AAAI 2022: Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation
 This is a PyTorch implementation of [Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation](https://arxiv.org/abs/2201.08657).
 
 The overall framework 

@@ -61,7 +61,7 @@ def pre_data(batch_size, num_workers, test_vendor):
                             shuffle=False, drop_last=True, pin_memory=False)
 
     test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, num_workers=num_workers,
-                             shuffle=True, drop_last=True, pin_memory=False)
+                             shuffle=False, drop_last=True, pin_memory=False)
 
     print("after length of label_dataset", len(label_dataset))
     print("length of unlabel_dataset", len(unlabel_dataset))
